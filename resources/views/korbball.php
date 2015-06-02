@@ -136,7 +136,7 @@
                     $text = $content->descriptin;
                     $splitedText = explode("\n", $text);
                     echo sprintf("<p class=\"lead\">%s</p>", $splitedText[0]);
-                    if(count($splitedText) > 1) echo sprintf("<p class=\"lead\">%s</p>", $splitedText[1]);
+                    if(count($splitedText) > 1) echo sprintf("<p>%s</p>", $splitedText[1]);
                 ?>
 
                         <!-- End Nested Comment -->
@@ -144,9 +144,9 @@
                     <tr><th>Mitglieder</th></tr>
                     <?php 
                     //TODO implement correct query
-                        $members = DB::table('member')->join('has_member', 'member.id', '=', 'has_member.member')
-                        ->select('member.prename', 'member.name', 'member.email')->where('has_member.department', "=", '1');
-                        //$members = DB::select('select prename, name, email from member');
+                        //$members = DB::table('member')->join('has_member', 'member.id', '=', 'has_member.member')
+                        //->select('member.prename', 'member.name', 'member.email')->where('has_member.department', "=", '1').get();
+                        $members = DB::select('select prename, name, email from member join has_member on has_member.member = member.id where department = 1');
                         foreach($members as $member){
                             $prename = $member->prename;
                             $name = $member->name;

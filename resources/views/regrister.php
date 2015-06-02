@@ -117,7 +117,7 @@
 
         <!-- Content Row -->
         <div class="row">
-            <form class="form-horizontal form-group" role="form">
+            <form class="form-horizontal form-group" method="POST" role="form">
                 <div class="form-group">
                     <label for="prename" class="col-sm-2 control-label">Vornamen</label>
                         <div class="col-sm-10">
@@ -130,12 +130,18 @@
                             <input type="text" class="form-control" name="lastname" placeholder="Nachnamen" />
                         </div>
                 </div>
-                    <div class="form-group">
-                        <label for="email" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="email" placeholder="E-Mail"/>
-                        </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="email" placeholder="E-Mail"/>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Passwort</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="password" placeholder="Passwort"/>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="type" class="col-sm-2 control-label">Mitglied</label>
                     <div class="col-sm-10 btn-group" name="type" data-toggle="buttons-checkbox">
@@ -151,9 +157,15 @@
                             <input type="text" class="form-control" name="picture" placeholder="Bild URL">
                         </div>
                 </div>
-
+                <button class="btn btn-success pull-right" type="submit" name="regrister">Speichern</button>
                 </form>
-            <a class="btn btn-success pull-right" href="/Regrister">Speichern</i></a>
+            
+            <?php
+                if(isset($_POST['prename'])){
+                    echo 'test';
+
+                }
+            ?>
             </div>
         </div>
         <!-- /.row -->

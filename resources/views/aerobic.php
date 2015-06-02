@@ -144,9 +144,9 @@
                     <tr><th>Mitglieder</th></tr>
                     <?php 
                     //TODO implement correct query
-                        $members = DB::table('member')->join('has_member', 'member.id', '=', 'has_member.member')
-                        ->select('member.prename', 'member.name', 'member.email')->where('has_member.department', "=", '3')->get();
-                        //$members = DB::select('select prename, name, email from member');
+                        //$members = DB::table('member')->join('has_member', 'member.id', '=', 'has_member.member')
+                        //->select('member.prename', 'member.name', 'member.email')->where('has_member.department', "=", '3')->get();
+                        $members = DB::select('select prename, name, email from member join has_member on has_member.member = member.id where department = 1');
                         if($members != null){
                             foreach($members as $member){
                                 $prename = $member->prename;

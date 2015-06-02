@@ -146,7 +146,15 @@
                         <h4><i class="fa fa-fw"></i> Leichtathletik</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <?php
+                            $content = DB::table('department')->where('id', '2')->first();
+                            $text = $content->descriptin;
+                            if(strlen($text) > 200){
+                                $text = substr($text, 0, 200);
+                                $text = $text . '...';
+                            }
+                            echo sprintf("<p>%s</p>", $text);
+                        ?>
                         <a href="/Leichtathletik" class="btn btn-default">Mehr...</a>
                     </div>
                 </div>
@@ -157,7 +165,15 @@
                         <h4><i class="fa fa-fw"></i> Korbball</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <?php
+                            $content = DB::table('department')->where('id', '1')->first();
+                            $text = $content->descriptin;
+                            if(strlen($text) > 200){
+                                $text = substr($text, 0, 200);
+                                $text = $text . '...';
+                            }
+                            echo sprintf("<p>%s</p>", $text);
+                        ?>
                         <a href="/Korbball" class="btn btn-default">Mehr...</a>
                     </div>
                 </div>
@@ -168,7 +184,15 @@
                         <h4><i class="fa fa-fw"></i> Aerobic</h4>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <?php
+                            $content = DB::table('department')->where('id', '3')->first();
+                            $text = $content->descriptin;
+                            if(strlen($text) > 200){
+                                $text = substr($text, 0, 200);
+                                $text = $text . '...';
+                            }
+                            echo sprintf("<p>%s</p>", $text);
+                        ?>
                         <a href="/Aerobic" class="btn btn-default">Mehr...</a>
                     </div>
                 </div>

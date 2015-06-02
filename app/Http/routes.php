@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+$app->post('/api/create-user', 'App\Http\Controllers\UserController@store');
 $app->get('/', function() use ($app) {
 	return view('index');
 });
