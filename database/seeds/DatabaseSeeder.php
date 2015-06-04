@@ -1,5 +1,6 @@
 <?php
 
+use App\Event;
 use App\Member;
 use App\Department;
 use Illuminate\Database\Seeder;
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('DepartmentTableSeeder');
 		$this->call('MemberTableSeeder');
+		$this->call('EventTableSeeder');
 	}
 
 }
@@ -91,6 +93,42 @@ class MemberTableSeeder extends Seeder {
 
 		DB::table('department_member')->insert(
 			['department_id' => 1, 'member_id' => 1]
+			);
+	}
+}
+class EventTableSeeder extends Seeder {
+
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		DB::table('events')->delete();
+
+		Event::create([
+			'picture' => 'http://stuffpoint.com/trollface/image/38528-trollface-trol-d.jpg',
+			'name' => 'Turnerunterhaltung',
+			'location' => 'MZH Welschenrohr',
+			'description' => 'Spass mit der Ganzen Familie. Jede Abteilung des Turnvereines präsentiert einen oder mehrere Reigen und das ganze wird umrahmt mit einem lustigen Theaterstück.',
+			'startdate' => '2016-11-12 20:15',
+			'amount' => 25,
+			'name' => 'Korbball'
+			]);
+
+		DB::table('department_event')->delete();
+
+		DB::table('department_event')->insert(
+			['department_id' => 1, 'event_id' => 1],
+			['department_id' => 2, 'event_id' => 1],
+			['department_id' => 3, 'event_id' => 1]
+			);
+
+		DB::table('event_member')->delete();
+
+		DB::table('event_member')->insert(
+			['event_id' => 1, 'member_id' => 1]
 			);
 	}
 }

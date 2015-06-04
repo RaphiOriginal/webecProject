@@ -9,10 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Profil</title>
-
-    <!-- Own CSS -->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Aerobic</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -121,12 +118,12 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Profil
+                <h1 class="page-header">Aerobic
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/">TV Welschenrohr</a>
                     </li>
-                    <li class="active">Profil</li>
+                    <li class="active">Aerobic</li>
                 </ol>
             </div>
         </div>
@@ -134,102 +131,52 @@
 
         <!-- Content Row -->
         <div class="row">
-            <div class="col-md-7">
-                <?php
-                    $user = Session::get('loggedInUser');
-                    echo '<img class="img-responsive" src="' . $user->picture . '" alt="">'
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Preview Image -->
+                <?php 
+                    $picture = DB::table('department')->where('id', '3')->first();
+                    echo sprintf("<img class=\"img-responsive\" src=\"http:%s\" alt=\"\">",$picture->picture);
                 ?>
-            </div>
-            <div class="col-md-5">
-            <form class="form-horizontal form-group" role="form">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Vorname</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php 
-                            $user = Session::get('loggedInUser');
-                            $prename = $user->prename;
-                            echo $prename;
-                            ?></p>
-                        </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Nachname</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php 
-                            $user = Session::get('loggedInUser');
-                            $name = $user->name;
-                            echo $name;
-                            ?></p>
-                        </div>
-                </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Email</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php 
-                            $user = Session::get('loggedInUser');
-                            $email = $user->email;
-                            echo $email;
-                            ?></p>
-                        </div>
-                    </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Mitglied</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php
-                                $user = Session::get('loggedInUser');
-                                $departments = DB::table('departments')
-                                    ->join('department_member', 'departments.id', '=', 'department_member.member_id')
-                                    ->select('departments.name')
-                                    ->where('department_member.member_id', '=', $user->id)
-                                    ->get();
-                                $string = "";
-                                $counter = 0;
-                                $end = count($departments);
-                                foreach($departments as $department){
-                                    $string = $string . $department->name;
-                                    $counter = $counter + 1;
-                                    if($counter < $end){
-                                        $string = $string . ", ";
-                                    }
-                                }
-                                echo $string;
-                            ?></p>
-                        </div>
-                </div>
+                <!-- <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                -->
+                <hr>
 
-                </form>
-            <a class="btn btn-success pull-right" href="regrister.html">Bearbeiten</i></a>
-            </div>
-        </div>
-        <!-- /.row -->
+                <!-- Post Content -->
+                <?php
+                    $content = DB::table('department')->where('id', '3')->first();
+                    $text = $content->descriptin;
+                    $splitedText = explode("\n", $text);
+                    echo sprintf("<p class=\"lead\">%s</p>", $splitedText[0]);
+                    if(count($splitedText) > 1) echo sprintf("<p class=\"lead\">%s</p>", $splitedText[1]);
+                ?>
 
-        <!-- Content Row -->
+                        <!-- End Nested Comment -->
+                <table class="table">
+                    <tr><th>Mitglieder</th></tr>
+                    <?php 
+                    //TODO implement correct query
+                        //$members = DB::table('member')->join('has_member', 'member.id', '=', 'has_member.member')
+                        //->select('member.prename', 'member.name', 'member.email')->where('has_member.department', "=", '3')->get();
+                        $members = DB::select('select prename, name, email from member join has_member on has_member.member = member.id where department = 1');
+                        if($members != null){
+                            foreach($members as $member){
+                                $prename = $member->prename;
+                                $name = $member->name;
+                                $mail = $member->email;
+                                echo sprintf("<tr><td>%s %s %s</td><tr>", $prename, $name, $mail);
+                            }
+                        }
+                    ?>
+                </table>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Deine Events</h2>
+                <hr>
+
             </div>
-            <!-- Project One -->
-            <div class="row">
-                <div class="col-md-7">
-                    <a href="/Event">
-                        <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                    </a>
-                </div>
-                <div class="col-md-5">
-                    <h3>Event One</h3>
-                    <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                    <a class="btn btn-primary" href="/Event">Zeige Event</i></a>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
 
         </div>
-
-        <hr>
 
         <!-- Footer -->
         <footer>

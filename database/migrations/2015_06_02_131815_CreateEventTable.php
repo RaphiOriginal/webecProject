@@ -20,7 +20,7 @@ class CreateEventTable extends Migration {
 			$table->integer('amount')->nullable();
 			$table->string('description', 3000)->nullable();
 			$table->datetime('startdate')->nullable();
-			$table->string('picture', 55)->nullable();
+			$table->string('picture', 255)->nullable();
 			$table->datetime('created_at')->nullable();
 			$table->datetime('updated_at')->nullable();
 		});

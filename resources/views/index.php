@@ -59,13 +59,27 @@
                     <li>
                         <a href="/Events">Events</a>
                     </li>
+                    <?php
+                        $user = Session::get('loggedInUser');
+                        if($user != null){
+                            echo '<li>';
+                            echo '<a href="/Profile">Profile</a>';
+                            echo '</li>';
+                        }
+                    ?>
                     <li>
-                        <a href="/Profile">Profile</a>
-                    </li>
-                    <li>
-                        <form class="navbar-form navbar-left" role="search">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">SignIn</button>
-                        </form>
+                        <!--<form class="navbar-form navbar-left" role="search">-->
+                            <?php
+                                $user = Session::get('loggedInUser');
+                                if($user == null){
+                                    echo '<form class="navbar-form navbar-left" role="search">';
+                                    echo '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">SignIn</button>';
+                                } else {
+                                    echo '<form class="navbar-form navbar-left" method="GET" action="/Logout" role="form">';
+                                    echo '<a type="button" class="btn btn-danger" href="/Logout">LogOut</a>';
+                                }
+                                echo '</form>';
+                            ?>
                     </li>
                 </ul>
             </div>
