@@ -12,16 +12,16 @@
     <title>Event</title>
 
     <!-- Own CSS -->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
     
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="../css/modern-business.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -138,51 +138,58 @@
         <div class="row">
 
             <div class="col-md-8">
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol>
-
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img class="img-responsive" src="http://placehold.it/750x500" alt="">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" src="http://placehold.it/750x500" alt="">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" src="http://placehold.it/750x500" alt="">
-                        </div>
-                    </div>
-
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                </div>
+                <?php
+                echo '<img class="img-responsive" src="' . $event->picture . '" alt="">';
+                ?>
             </div>
-
             <div class="col-md-4">
-                <h3>Event Description</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+                <h3><?php echo $event->name; ?></h3>
+                <p><?php echo $event->description; ?></p>
                 <h3>Event Details</h3>
-                <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                <h4 class="event-list"><i class="fa fa-fw fa-map-marker"></i> Brugg</h4>
-                <h4 class="event-list"><i class="fa fa-fw fa-credit-card"></i> 50.-</h4>
+                <?php 
+                $datetime = explode(' ', $event->startdate);
+                echo '<h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> ';
+                echo $datetime[0];
+                echo '</h4>';
+                echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ';
+                echo $datetime[1];
+                echo '</h4>';
+                ?>
+                <h4 class="event-list"><i class="fa fa-fw fa-map-marker"></i> <?php echo $event->location; ?></h4>
+                <h4 class="event-list"><i class="fa fa-fw fa-credit-card"></i> <?php $string = ""; $string = $string . $event->amount . '.-'; echo $string;?></h4>
                 <table class="table">
                     <tr><th>Teilnehmer</th><th>Abteilung</th></tr>
-                    <tr><td>Raphael Brunner</td><td>Korbball</td></tr>
-                    <tr><td>Bob der Baumeister</td><td>Korbball, Leichtathletik, Aerobic</td></tr>
+                    <?php 
+                        $participants = $event->participants()->get();
+                        foreach($participants as $member){
+                            $departments = DB::table('departments')
+                                    ->join('department_member', 'departments.id', '=', 'department_member.member_id')
+                                    ->select('departments.name')
+                                    ->where('department_member.member_id', '=', $member->id)
+                                    ->get();
+                                $string = "";
+                                $counter = 0;
+                                $end = count($departments);
+                                foreach($departments as $department){
+                                    $string = $string . $department->name;
+                                    $counter = $counter + 1;
+                                    if($counter < $end){
+                                        $string = $string . ", ";
+                                    }
+                                }
+                            echo '<tr><td>' . $member->prename . ' ' . $member->name . '</td><td>' . $string . '</td></tr>';
+                        }
+                    ?>
                 </table>
-                 <a class="btn btn-success pull-right" href="#">Teilnehmen</a>
+                <?php
+                    $user = Session::get('loggedInUser');
+                    if($user != null){
+                        echo '<form id="addEvent" class="form-horizontal form-group" method="POST" action="/AddEvent" role="form">';
+                        echo '<input type="hidden" name="id" value="' . $event->id . '">';
+                        echo '<button class="btn btn-success pull-right" type="submit">Teilnehmen</a>';
+                        echo '</form>';
+                    }
+                ?>
             </div>
 
         </div>
@@ -203,10 +210,10 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
 </body>
 

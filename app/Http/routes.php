@@ -1,5 +1,6 @@
 <?php
 
+use App\Event;
 use App\Department;
 
 /*
@@ -19,6 +20,7 @@ $app->post('/api/create-event', 'App\Http\Controllers\EventController@store');
 $app->get('/api/get-user', 'App\Http\Controllers\UserController@index');
 $app->post('/Login', 'App\Http\Controllers\LoginController@auth');
 $app->get('/Logout', 'App\Http\Controllers\LogoutController@logout');
+$app->post('/AddEvent', 'App\Http\Controllers\UserController@eventAdder');
 $app->get('/department/{id}', function($id) use ($app) {
 	$department = Department::find($id);
     return view('department', ['department' => $department]);
@@ -44,8 +46,9 @@ $app->get('/Profile', function() use ($app) {
 $app->get('/CreateEvent', function() use ($app) {
 	return view('createEvent');
 });
-$app->get('/Event', function() use ($app) {
-	return view('event');
+$app->get('/Event/{id}', function($id) use ($app) {
+	$event = Event::find($id);
+	return view('event', ['event' => $event]);
 });
 $app->get('/Regrister', function() use ($app) {
 	return view('regrister');

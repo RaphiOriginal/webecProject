@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Event;
 use App\Department;
 use App\Member;
 use Illuminate\Http\Request;
@@ -26,5 +27,21 @@ class UserController extends BaseController
     }
     public function index(){
     	return Member::all();
+    }
+    public function eventAdder(Request $request){
+        $user = session('loggedInUser');
+        $id = $request->input('id');
+        $userEvents = $user->events()->get();
+        $check = false;
+        foreach($userEvents as $eventcheck){
+            if(!$check){
+                $check = $eventcheck->id == $id;
+            }
+        }
+        if(!$check){
+            $user->events()->attach($id);
+        }
+        $event = Event::find($id);
+        return redirect()->back();
     }
 }
