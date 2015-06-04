@@ -196,9 +196,6 @@
                             ?></p>
                         </div>
                 </div>
-
-                </form>
-            <a class="btn btn-success pull-right" href="regrister.html">Bearbeiten</i></a>
             </div>
         </div>
         <!-- /.row -->
@@ -210,21 +207,27 @@
                 <h2 class="page-header">Deine Events</h2>
             </div>
             <!-- Project One -->
-            <div class="row">
-                <div class="col-md-7">
-                    <a href="/Event">
-                        <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                    </a>
-                </div>
-                <div class="col-md-5">
-                    <h3>Event One</h3>
-                    <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                    <a class="btn btn-primary" href="/Event">Zeige Event</i></a>
-                </div>
-            </div>
-        </div>
+            <?php
+                $user = Session::get('loggedInUser');
+                $events = $user->events()->get();
+                foreach($events as $event){
+                    echo '<div class="row">';
+                        echo '<div class="col-md-7">';
+                            echo '<a href="/Event">';
+                                echo '<img class="img-responsive img-hover" src="' . $event->picture . ' " alt="">';
+                            echo '</a>';
+                        echo '</div>';
+                        echo '<div class="col-md-5">';
+                            echo '<h3>' . $event->name . '</h3>';
+                            $datetime = explode(' ', $event->startdate);
+                            echo '<h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> ' . $datetime[0] . '</h4>';
+                            echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ' . $datetime[1] . '</h4>';
+                            echo '<p>' . $event->description . '</p>';
+                            echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
+                        echo '</div>';
+                    echo '</div>';
+                }
+            ?>
         <!-- /.row -->
 
         </div>

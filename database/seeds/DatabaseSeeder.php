@@ -108,7 +108,7 @@ class EventTableSeeder extends Seeder {
 		DB::table('events')->delete();
 
 		Event::create([
-			'picture' => 'http://stuffpoint.com/trollface/image/38528-trollface-trol-d.jpg',
+			'picture' => 'http://www.tvwelschenrohr.ch/wordpress/wp-content/uploads/2014/10/Nimmerland-Flyer-5.jpg',
 			'name' => 'Turnerunterhaltung',
 			'location' => 'MZH Welschenrohr',
 			'description' => 'Spass mit der Ganzen Familie. Jede Abteilung des Turnvereines präsentiert einen oder mehrere Reigen und das ganze wird umrahmt mit einem lustigen Theaterstück.',

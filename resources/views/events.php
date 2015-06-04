@@ -133,133 +133,31 @@
         <!-- /.row -->
 
         <!-- Project One -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="/Event">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Event One</h3>
-                <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                <a class="btn btn-primary" href="/Event">Zeige Event</i></a>
-            </div>
-        </div>
+        <?php
+        use App\Event;
+
+                $events = Event::all();
+                foreach($events as $event){
+                    echo '<div class="row">';
+                        echo '<div class="col-md-7">';
+                            echo '<a href="/Event">';
+                                echo '<img class="img-responsive img-hover" src="' . $event->picture . ' " alt="">';
+                            echo '</a>';
+                        echo '</div>';
+                        echo '<div class="col-md-5">';
+                            echo '<h3>' . $event->name . '</h3>';
+                            $datetime = explode(' ', $event->startdate);
+                            echo '<h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> ' . $datetime[0] . '</h4>';
+                            echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ' . $datetime[1] . '</h4>';
+                            echo '<p>' . $event->description . '</p>';
+                            echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
+                        echo '</div>';
+                    echo '</div>';
+                }
+            ?>
         <!-- /.row -->
 
         <hr>
-
-        <!-- Project Two -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="/Event">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Event Two</h3>
-                <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
-                <a class="btn btn-primary" href="/Event">Zeige Event</i></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Three -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="/Event">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Event Three</h3>
-                <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
-                <a class="btn btn-primary" href="/Event">Zeige Event</i></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Four -->
-        <div class="row">
-
-            <div class="col-md-7">
-                <a href="/Event">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Event Four</h3>
-                <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
-                <a class="btn btn-primary" href="/Event">Zeige Event</i></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Five -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Event Five</h3>
-                <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> 06 Dezember 2016</h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> 08:00</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident ex quisquam hic odio repellendus atque porro distinctio quae id laboriosam facilis dolorum.</p>
-                <a class="btn btn-primary" href="/Event">Zeige Event</i></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
         <!-- Footer -->
         <footer>
             <div class="row">
