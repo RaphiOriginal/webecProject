@@ -12,11 +12,9 @@ class LoginController extends BaseController
 
     		$user = Member::where('email', '=', $email)->first();
     		session()->regenerate();
-    		if($user != null){
-    			if($user->password == $password){
-    				session(['loggedInUser' => $user]);
-    			}
-    		}
+			if($user != null && $user->password == $password){
+				session(['loggedInUser' => $user]);
+			}
     		return redirect()->back();
     }
 }

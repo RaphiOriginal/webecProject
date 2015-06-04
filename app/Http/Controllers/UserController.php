@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Department;
 use App\Member;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -14,6 +15,13 @@ class UserController extends BaseController
     		$member->password = $request->input('password');
     		$member->picture = $request->input('picture');
     		$member->save();
+            $departments = Department::all();
+            foreach($departments as $department){
+                $id = $request->input($department->id);
+                if($id != null){
+                    $member->departments()->attach($id);
+                }
+            }
             return view('regrister');
     }
     public function index(){

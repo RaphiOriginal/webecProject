@@ -121,7 +121,10 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-7">
-                <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                <?php
+                    $user = Session::get('loggedInUser');
+                    echo '<img class="img-responsive" src="' . $user->picture . '" alt="">'
+                ?>
             </div>
             <div class="col-md-5">
             <form class="form-horizontal form-group" role="form">
@@ -159,7 +162,12 @@
                     <label class="col-sm-3 control-label">Mitglied</label>
                         <div class="col-sm-2">
                             <p class="form-control-static"><?php
-                                $departments = $user->departments();
+                                $user = Session::get('loggedInUser');
+                                $departments = DB::table('departments')
+                                    ->join('department_member', 'departments.id', '=', 'department_member.member_id')
+                                    ->select('departments.name')
+                                    ->where('department_member.member_id', '=', $user->id)
+                                    ->get();
                                 $string = "";
                                 $counter = 0;
                                 $end = count($departments);

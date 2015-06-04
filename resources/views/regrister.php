@@ -144,12 +144,14 @@
                 </div>
                 <div class="form-group">
                     <label for="type" class="col-sm-2 control-label">Mitglied</label>
-                    <div class="col-sm-10 btn-group" name="type" data-toggle="buttons-checkbox">
-                        <button type="button" class="btn btn-primary">Korbball</button>
-                        <button type="button" class="btn btn-primary">Leichtathletik</button>
-                        <button type="button" class="btn btn-primary">Aerobic</button>
-                        <button type="button" class="btn btn-primary">Passiv</button>
-                    </div>
+                    <?php
+                        $departments = DB::table('departments')->get();
+                        foreach($departments as $department){
+                            echo '<div class="checkbox-inline">';
+                            echo '<label><input type="checkbox" name="' . $department->id . '" value="' . $department->id . '">' . $department->name . '</label>';
+                            echo '</div>';
+                        }
+                    ?>
                 </div>
                 <div class="form-group">
                     <label for="picture" class="col-sm-2 control-label">Profilbild</label>

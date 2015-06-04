@@ -12,7 +12,7 @@ class Member extends Model {
 	];
 
 	public function events(){
-		return $this->belonsToMany('App\Event');
+		return $this->belongsToMany('App\Event');
 	}
 	public function departments(){
 		return $this->belongsToMany('App\Department');

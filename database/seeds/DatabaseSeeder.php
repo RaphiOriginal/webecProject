@@ -1,5 +1,6 @@
 <?php
 
+use App\Member;
 use App\Department;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 		//Model::unguard();
 
 		$this->call('DepartmentTableSeeder');
+		$this->call('MemberTableSeeder');
 	}
 
 }
@@ -29,6 +31,9 @@ class DepartmentTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
+
+		DB::table('departments')->delete();
+
 		Department::create([
 			'name' => 'Korbball',
 			'description' => 'Unser Korbballteam spielt in den Regionalen Meisterschaften in der 1. Liga und spielt immer erfolgreich in den vorderen Rängen mit.\n Mit viel Spass und hartem Training gehen wir jährlich die Sommer und Wintermeisterschaft an. Zusammen machen wir etwas gesundes für unseren Körper aber pflegen auch die Kameradschaft, die sehr wichtig ist im Teamsport.',
@@ -56,5 +61,36 @@ class DepartmentTableSeeder extends Seeder {
 			'picture' => 'http://thenational.net/wp-content/uploads/2014/11/Aerobic-Exercise.jpg'
 			]);
 	}
+}
+class MemberTableSeeder extends Seeder {
 
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		DB::table('members')->delete();
+
+		Member::create([
+			'picture' => 'http://stuffpoint.com/trollface/image/38528-trollface-trol-d.jpg',
+			'name' => 'Brunner',
+			'prename' => 'Raphael',
+			'password' => '1234',
+			'stv_number' => '123-123-123',
+			'email' => 'raphael.brunner3@students.fhnw.ch',
+			'adress' => 'Sollmatt 74',
+			'PLZ' => 4716,
+			'location' => 'Welschenrohr',
+			'is_admin' => 1,
+			'name' => 'Korbball'
+			]);
+
+		DB::table('department_member')->delete();
+
+		DB::table('department_member')->insert(
+			['department_id' => 1, 'member_id' => 1]
+			);
+	}
 }
