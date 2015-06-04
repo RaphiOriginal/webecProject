@@ -138,12 +138,14 @@
                     <input type="text" class="form-control" name="event" placeholder="Eventnamen" />
                 </div>
                 <div class="form-group">
-                        <div class="btn-group" name="type" data-toggle="buttons-checkbox">
-                            <button type="button" class="btn btn-primary">Korbball</button>
-                            <button type="button" class="btn btn-primary">Leichtathletik</button>
-                            <button type="button" class="btn btn-primary">Aerobic</button>
-                            <button type="button" class="btn btn-primary">TV Welschenrohr</button>
-                        </div>
+                        <?php
+                        $departments = DB::table('departments')->get();
+                        foreach($departments as $department){
+                            echo '<div class="checkbox-inline">';
+                            echo '<label><input type="checkbox" name="' . $department->id . '" value="' . $department->id . '">' . $department->name . '</label>';
+                            echo '</div>';
+                        }
+                    ?>
                     </div>
                 <div class="form-group">
                     <textarea type="text" class="form-control" rows= "5" name="description" placeholder="Eventbeschreibung" ></textarea>

@@ -220,22 +220,25 @@
                 <h2 class="page-header">Sponsoren</h2>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="http://placehold.it/500x300" alt="">
+                <img class="img-responsive customer-img" src="/sponsors/bimbosan.bmp" alt="">
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="http://placehold.it/500x300" alt="">
+                <img class="img-responsive customer-img" src="/sponsors/ford_fluri.jpg" alt="">
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="http://placehold.it/500x300" alt="">
+                <img class="img-responsive customer-img" src="/sponsors/image0011.gif" alt="">
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="http://placehold.it/500x300" alt="">
+                <img class="img-responsive customer-img" src="/sponsors/Inserat_Grico_Beamer-e1263890315294.jpg" alt="">
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="http://placehold.it/500x300" alt="">
+                <img class="img-responsive customer-img" src="/sponsors/marti_speda.jpg" alt="">
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="http://placehold.it/500x300" alt="">
+                <img class="img-responsive customer-img" src="/sponsors/raiffeisen.jpg" alt="">
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                <img class="img-responsive customer-img" src="/sponsors/zimmerei_meier.jpg" alt="">
             </div>
         </div>
         <!-- /.row -->

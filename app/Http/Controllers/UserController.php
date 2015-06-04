@@ -23,7 +23,7 @@ class UserController extends BaseController
                     $member->departments()->attach($id);
                 }
             }
-            return view('regrister');
+            return redirect()->back();
     }
     public function index(){
     	return Member::all();

@@ -85,8 +85,7 @@ class MemberTableSeeder extends Seeder {
 			'adress' => 'Sollmatt 74',
 			'PLZ' => 4716,
 			'location' => 'Welschenrohr',
-			'is_admin' => 1,
-			'name' => 'Korbball'
+			'is_admin' => 1
 			]);
 
 		DB::table('department_member')->delete();

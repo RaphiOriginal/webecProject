@@ -162,11 +162,7 @@
                     <?php 
                         $participants = $event->participants()->get();
                         foreach($participants as $member){
-                            $departments = DB::table('departments')
-                                    ->join('department_member', 'departments.id', '=', 'department_member.member_id')
-                                    ->select('departments.name')
-                                    ->where('department_member.member_id', '=', $member->id)
-                                    ->get();
+                            $departments = $member->departments()->get();
                                 $string = "";
                                 $counter = 0;
                                 $end = count($departments);

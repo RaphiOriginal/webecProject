@@ -15,6 +15,7 @@ class EventController extends BaseController
     		$event->startdate = $request->input('startdate');
     		$event->picture = $request->input('picture');
     		$event->save();
+            return redirect()->back();
     }
     public function index(){
     	return Event::all();
