@@ -48,13 +48,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/Leichtathletik">Leichtathletik</a>
+                        <a href="/department/2">Leichtathletik</a>
                     </li>
                     <li>
-                        <a href="/Korbball">Korbball</a>
+                        <a href="/department/1">Korbball</a>
                     </li>
                     <li>
-                        <a href="/Aerobic">Aerobic</a>
+                        <a href="/department/3">Aerobic</a>
                     </li>
                     <li>
                         <a href="/Events">Events</a>
@@ -147,15 +147,15 @@
                     </div>
                     <div class="panel-body">
                         <?php
-                            $content = DB::table('department')->where('id', '2')->first();
-                            $text = $content->descriptin;
+                            $content = DB::table('departments')->where('id', '2')->first();
+                            $text = $content->description;
                             if(strlen($text) > 200){
                                 $text = substr($text, 0, 200);
                                 $text = $text . '...';
                             }
                             echo sprintf("<p>%s</p>", $text);
                         ?>
-                        <a href="/Leichtathletik" class="btn btn-default">Mehr...</a>
+                        <a href="/department/2" class="btn btn-default">Mehr...</a>
                     </div>
                 </div>
             </div>
@@ -166,15 +166,15 @@
                     </div>
                     <div class="panel-body">
                         <?php
-                            $content = DB::table('department')->where('id', '1')->first();
-                            $text = $content->descriptin;
+                            $content = DB::table('departments')->where('id', '1')->first();
+                            $text = $content->description;
                             if(strlen($text) > 200){
                                 $text = substr($text, 0, 200);
                                 $text = $text . '...';
                             }
                             echo sprintf("<p>%s</p>", $text);
                         ?>
-                        <a href="/Korbball" class="btn btn-default">Mehr...</a>
+                        <a href="/department/1" class="btn btn-default">Mehr...</a>
                     </div>
                 </div>
             </div>
@@ -185,15 +185,15 @@
                     </div>
                     <div class="panel-body">
                         <?php
-                            $content = DB::table('department')->where('id', '3')->first();
-                            $text = $content->descriptin;
+                            $content = DB::table('departments')->where('id', '3')->first();
+                            $text = $content->description;
                             if(strlen($text) > 200){
                                 $text = substr($text, 0, 200);
                                 $text = $text . '...';
                             }
                             echo sprintf("<p>%s</p>", $text);
                         ?>
-                        <a href="/Aerobic" class="btn btn-default">Mehr...</a>
+                        <a href="/department/3" class="btn btn-default">Mehr...</a>
                     </div>
                 </div>
             </div>

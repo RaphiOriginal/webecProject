@@ -2,17 +2,18 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model {
+class Event extends Model {
 	protected $fillable = [
-	'email',
 	'name',
-	'prename',
-	'password',
-	'picture'
+	'description',
+	'location',
+	'picture',
+	'startdate',
+	'amount'
 	];
 
-	public function events(){
-		return $this->belonsToMany('App/Event');
+	public function participants(){
+		return $this->belongsToMany('App/Member');
 	}
 	public function departments(){
 		return $this->belongsToMany('App/Department');

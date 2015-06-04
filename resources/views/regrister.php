@@ -48,13 +48,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/Leichtathletik">Leichtathletik</a>
+                        <a href="/department/2">Leichtathletik</a>
                     </li>
                     <li>
-                        <a href="/Korbball">Korbball</a>
+                        <a href="/department/1">Korbball</a>
                     </li>
                     <li>
-                        <a href="/Aerobic">Aerobic</a>
+                        <a href="/department/3">Aerobic</a>
                     </li>
                     <li>
                         <a href="/Events">Events</a>
@@ -117,7 +117,7 @@
 
         <!-- Content Row -->
         <div class="row">
-            <form class="form-horizontal form-group" method="POST" role="form">
+            <form id="createUser" class="form-horizontal form-group" method="POST" action="/Regrister" role="form">
                 <div class="form-group">
                     <label for="prename" class="col-sm-2 control-label">Vornamen</label>
                         <div class="col-sm-10">
@@ -157,15 +157,9 @@
                             <input type="text" class="form-control" name="picture" placeholder="Bild URL">
                         </div>
                 </div>
-                <button class="btn btn-success pull-right" type="submit" name="regrister">Speichern</button>
+                <button class="btn btn-success pull-right" id="createUserSubmit">Speichern</button>
                 </form>
             
-            <?php
-                if(isset($_POST['prename'])){
-                    echo 'test';
-
-                }
-            ?>
             </div>
         </div>
         <!-- /.row -->

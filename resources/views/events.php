@@ -51,13 +51,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/Leichtathletik">Leichtathletik</a>
+                        <a href="/department/2">Leichtathletik</a>
                     </li>
                     <li>
-                        <a href="/Korbball">Korbball</a>
+                        <a href="/department/1">Korbball</a>
                     </li>
                     <li>
-                        <a href="/Aerobic">Aerobic</a>
+                        <a href="/department/3">Aerobic</a>
                     </li>
                     <li>
                         <a href="/Events">Events</a>
@@ -107,7 +107,7 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Events <a class="btn btn-success" href="createEvent.html">Erstellen</i></a>
+                <h1 class="page-header">Events <a class="btn btn-success" href="/CreateEvent">Erstellen</i></a>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/">TV Welschenrohr</a>

@@ -47,14 +47,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/Leichtathletik">Leichtathletik</a>
+                   <li>
+                        <a href="/department/2">Leichtathletik</a>
                     </li>
                     <li>
-                        <a href="/Korbball">Korbball</a>
+                        <a href="/department/1">Korbball</a>
                     </li>
                     <li>
-                        <a href="/Aerobic">Aerobic</a>
+                        <a href="/department/3">Aerobic</a>
                     </li>
                     <li>
                         <a href="/Events">Events</a>
@@ -119,34 +119,36 @@
 
         <!-- Content Row -->
         <div class="row">
-            <div class="form-group">
-                <input type="text" class="form-control" name="event" placeholder="Eventnamen" />
-            </div>
-            <div class="form-group">
-                    <div class="btn-group" name="type" data-toggle="buttons-checkbox">
-                        <button type="button" class="btn btn-primary">Korbball</button>
-                        <button type="button" class="btn btn-primary">Leichtathletik</button>
-                        <button type="button" class="btn btn-primary">Aerobic</button>
-                        <button type="button" class="btn btn-primary">TV Welschenrohr</button>
+            <form class="form-horizontal form-group" method="POST" action="/api/create-event" role="form">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="event" placeholder="Eventnamen" />
+                </div>
+                <div class="form-group">
+                        <div class="btn-group" name="type" data-toggle="buttons-checkbox">
+                            <button type="button" class="btn btn-primary">Korbball</button>
+                            <button type="button" class="btn btn-primary">Leichtathletik</button>
+                            <button type="button" class="btn btn-primary">Aerobic</button>
+                            <button type="button" class="btn btn-primary">TV Welschenrohr</button>
+                        </div>
+                    </div>
+                <div class="form-group">
+                    <textarea type="text" class="form-control" rows= "5" name="description" placeholder="Eventbeschreibung" ></textarea>
+                </div>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" placeholder="Event Termin"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                        <!-- !!!!!!TODO fix datepicker TODO!!!!!!-->
                     </div>
                 </div>
-            <div class="form-group">
-                <textarea type="text" class="form-control" rows= "5" name="description" placeholder="Eventbeschreibung" ></textarea>
-            </div>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" placeholder="Event Termin"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                    <!-- !!!!!!TODO fix datepicker TODO!!!!!!-->
+                <div class="form-group">
+                    <input type="text" class="form-control" name="picture" placeholder="Bild URL">
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="picture" placeholder="Bild URL">
-            </div>
-            <a class="btn btn-success pull-right" href="/CreateEvent">Speichern</i></a>
-            </div>
+                <button class="btn btn-success pull-right" type="submit">Speichern</button>
+                </div>
+            </form>
         </div>
         <!-- /.row -->
 

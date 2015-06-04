@@ -14,5 +14,9 @@ class UserController extends BaseController
     		$member->password = $request->input('password');
     		$member->picture = $request->input('picture');
     		$member->save();
+            return view('regrister');
+    }
+    public function index(){
+    	return Member::all();
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Department;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,7 +12,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-$app->post('/api/create-user', 'App\Http\Controllers\UserController@store');
+//echo phpinfo();
+
+$app->post('/Regrister', 'App\Http\Controllers\UserController@store');
+$app->post('/api/create-event', 'App\Http\Controllers\EventController@store');
+$app->get('/api/get-user', 'App\Http\Controllers\UserController@index');
+$app->get('/department/{id}', function($id) use ($app) {
+	$department = Department::find($id);
+    return view('department', ['department' => $department]);
+});
 $app->get('/', function() use ($app) {
 	return view('index');
 });
