@@ -126,27 +126,52 @@
             <div class="col-md-5">
             <form class="form-horizontal form-group" role="form">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Vornamen</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">Raphael</p>
+                    <label class="col-sm-3 control-label">Vorname</label>
+                        <div class="col-sm-2">
+                            <p class="form-control-static"><?php 
+                            $user = Session::get('loggedInUser');
+                            $prename = $user->prename;
+                            echo $prename;
+                            ?></p>
                         </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Nachname</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">Brunner</p>
+                    <label class="col-sm-3 control-label">Nachname</label>
+                        <div class="col-sm-2">
+                            <p class="form-control-static"><?php 
+                            $user = Session::get('loggedInUser');
+                            $name = $user->name;
+                            echo $name;
+                            ?></p>
                         </div>
                 </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">raphael.brunner3@students.fhnw.ch</p>
+                        <label class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-2">
+                            <p class="form-control-static"><?php 
+                            $user = Session::get('loggedInUser');
+                            $email = $user->email;
+                            echo $email;
+                            ?></p>
                         </div>
                     </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Mitglied</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">Korbball, Leichtathletik</p>
+                    <label class="col-sm-3 control-label">Mitglied</label>
+                        <div class="col-sm-2">
+                            <p class="form-control-static"><?php
+                                $departments = $user->departments();
+                                $string = "";
+                                $counter = 0;
+                                $end = count($departments);
+                                foreach($departments as $department){
+                                    $string = $string . $department->name;
+                                    $counter = $counter + 1;
+                                    if($counter < $end){
+                                        $string = $string . ", ";
+                                    }
+                                }
+                                echo $string;
+                            ?></p>
                         </div>
                 </div>
 

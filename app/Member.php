@@ -12,9 +12,9 @@ class Member extends Model {
 	];
 
 	public function events(){
-		return $this->belonsToMany('App/Event');
+		return $this->belonsToMany('App\Event');
 	}
 	public function departments(){
-		return $this->belongsToMany('App/Department');
+		return $this->belongsToMany('App\Department');
 	}
 }

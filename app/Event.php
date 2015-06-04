@@ -13,9 +13,9 @@ class Event extends Model {
 	];
 
 	public function participants(){
-		return $this->belongsToMany('App/Member');
+		return $this->belongsToMany('App\Member');
 	}
 	public function departments(){
-		return $this->belongsToMany('App/Department');
+		return $this->belongsToMany('App\Department');
 	}
 }

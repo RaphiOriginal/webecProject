@@ -13,9 +13,9 @@ class Department extends Model {
 	];
 
 	public function events(){
-		return $this->belongsToMany('App/Event');
+		return $this->belongsToMany('App\Event');
 	}
 	public function members(){
-		return $this->belongsToMany('App/Member');
+		return $this->belongsToMany('App\Member');
 	}
 }

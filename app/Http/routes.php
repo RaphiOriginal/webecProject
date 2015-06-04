@@ -17,6 +17,7 @@ use App\Department;
 $app->post('/Regrister', 'App\Http\Controllers\UserController@store');
 $app->post('/api/create-event', 'App\Http\Controllers\EventController@store');
 $app->get('/api/get-user', 'App\Http\Controllers\UserController@index');
+$app->post('/Login', 'App\Http\Controllers\LoginController@auth');
 $app->get('/department/{id}', function($id) use ($app) {
 	$department = Department::find($id);
     return view('department', ['department' => $department]);

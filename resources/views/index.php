@@ -82,9 +82,9 @@
                     <h4 class="modal-title" id="myModalLabel">Login</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form" role="search">
+                    <form class="form" method="POST" action="/Login" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="username" placeholder="Benutzername">
+                            <input type="text" class="form-control" name="email" placeholder="E-Mail">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" placeholder="Passwort">
