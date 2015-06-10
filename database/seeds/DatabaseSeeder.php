@@ -88,6 +88,19 @@ class MemberTableSeeder extends Seeder {
 			'is_admin' => 1
 			]);
 
+		Member::create([
+			'picture' => 'http://stuffpoint.com/trollface/image/38528-trollface-trol-d.jpg',
+			'name' => 'De Spindler',
+			'prename' => 'Alexandre',
+			'password' => '1234',
+			'stv_number' => '999-999-999',
+			'email' => 'alexandre.despindler@fhnw.ch',
+			'adress' => 'Dozentenstrasse 1',
+			'PLZ' => 8200,
+			'location' => 'Schaffhausen',
+			'is_admin' => 1
+			]);
+
 		DB::table('department_member')->delete();
 
 		DB::table('department_member')->insert(
@@ -112,8 +125,7 @@ class EventTableSeeder extends Seeder {
 			'location' => 'MZH Welschenrohr',
 			'description' => 'Spass mit der Ganzen Familie. Jede Abteilung des Turnvereines präsentiert einen oder mehrere Reigen und das ganze wird umrahmt mit einem lustigen Theaterstück.',
 			'startdate' => '2016-11-12 20:15',
-			'amount' => 25,
-			'name' => 'Korbball'
+			'amount' => 25
 			]);
 
 		DB::table('department_event')->delete();

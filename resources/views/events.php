@@ -121,7 +121,19 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Events <a class="btn btn-success" href="/CreateEvent">Erstellen</i></a>
+                <h1 class="page-header">Events 
+                <?php
+                    use App\Member;
+
+                    $user = Session::get('loggedInUser');
+                    if($user != null ) {
+                        $member = Member::find($user->id);
+                        if($member->is_admin == 1){
+                         echo '<a class="btn btn-success" href="/CreateEvent">Erstellen</i></a>';
+                        }
+                    }
+                ?>
+                
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/">TV Welschenrohr</a>

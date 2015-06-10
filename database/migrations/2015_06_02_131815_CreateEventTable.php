@@ -28,19 +28,19 @@ class CreateEventTable extends Migration {
 		Schema::create('department_event', function(Blueprint $table)
 		{
 			$table->integer('department_id')->unsigned()->index();
-			$table->foreign('department_id')->references('id')->on('departments');
+			$table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 
 			$table->integer('event_id')->unsigned()->index();
-			$table->foreign('event_id')->references('id')->on('events');
+			$table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
 		});
 
 		Schema::create('event_member', function(Blueprint $table)
 		{
 			$table->integer('event_id')->unsigned()->index();
-			$table->foreign('event_id')->references('id')->on('events');
+			$table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
 
 			$table->integer('member_id')->unsigned()->index();
-			$table->foreign('member_id')->references('id')->on('members');
+			$table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
 		});
 	}
 

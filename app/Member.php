@@ -8,6 +8,11 @@ class Member extends Model {
 	'name',
 	'prename',
 	'password',
+	'stv_number',
+	'adress',
+	'PLZ',
+	'location',
+	'is_admin',
 	'picture'
 	];
 

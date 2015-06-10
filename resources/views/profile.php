@@ -220,6 +220,9 @@
                             echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ' . $datetime[1] . '</h4>';
                             echo '<p>' . $event->description . '</p>';
                             echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
+
+                            echo '<a class="btn btn-danger pull-right" href="/RemoveEvent/' . $event->id . '">Entfernen</a>';
+
                         echo '</div>';
                     echo '</div>';
                 }

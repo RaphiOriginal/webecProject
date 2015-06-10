@@ -155,16 +155,13 @@
                 <table class="table">
                     <tr><th>Mitglieder</th></tr>
                     <?php 
-                    //TODO implement correct query
-                        //$members = DB::table('member')->join('has_member', 'member.id', '=', 'has_member.member')
-                        //->select('member.prename', 'member.name', 'member.email')->where('has_member.department', "=", '1').get();
-                        /*$members = DB::select('select prename, name, email from member join has_member on has_member.member = member.id where department = ' . $department->id);
+                        $members = $department->members()->get();
                         foreach($members as $member){
                             $prename = $member->prename;
                             $name = $member->name;
                             $mail = $member->email;
                             echo sprintf("<tr><td>%s %s %s</td><tr>", $prename, $name, $mail);
-                        }*/
+                        }
                     ?>
                 </table>
 

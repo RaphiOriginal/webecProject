@@ -19,6 +19,10 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="js/jquery.datetimepicker.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -121,7 +125,7 @@
                 <h1 class="page-header">Create new Event
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/">TV Welschenrohr</a>
+                    <li><a id="blabla" href="/">TV Welschenrohr</a>
                     </li>
                     <li><a href="/Events">Events</a>
                     </li>
@@ -132,10 +136,15 @@
         <!-- /.row -->
 
         <!-- Content Row -->
+        <script type="text/JavaScript">
+            $(document).ready(function() {
+                $("#datetimepicker").datetimepicker({format:'Y-m-d H:i',});
+            });
+        </script>
         <div class="row">
             <form class="form-horizontal form-group" method="POST" action="/api/create-event" role="form">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="event" placeholder="Eventnamen" />
+                    <input type="text" class="form-control" name="name" placeholder="Eventnamen" />
                 </div>
                 <div class="form-group">
                         <?php
@@ -152,8 +161,8 @@
                 </div>
                 <div class="form-group">
                     <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" placeholder="Event Termin"/>
-                        <span class="input-group-addon">
+                        <input type='text' class="form-control" id="datetimepicker" name="startdate" placeholder="Event Termin"/>
+                        <span id="datepickericon" class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                         <!-- !!!!!!TODO fix datepicker TODO!!!!!!-->
@@ -183,11 +192,12 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <!--<script src="js/jquery.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
 </body>
+
 
 </html>

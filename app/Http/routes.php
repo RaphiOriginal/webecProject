@@ -19,8 +19,9 @@ $app->post('/Regrister', 'App\Http\Controllers\UserController@store');
 $app->post('/api/create-event', 'App\Http\Controllers\EventController@store');
 $app->get('/api/get-user', 'App\Http\Controllers\UserController@index');
 $app->post('/Login', 'App\Http\Controllers\LoginController@auth');
-$app->get('/Logout', 'App\Http\Controllers\LogoutController@logout');
+$app->get('/Logout', 'App\Http\Controllers\LoginController@logout');
 $app->post('/AddEvent', 'App\Http\Controllers\UserController@eventAdder');
+$app->get('/RemoveEvent/{id}', 'App\Http\Controllers\UserController@eventRemover');
 $app->get('/department/{id}', function($id) use ($app) {
 	$department = Department::find($id);
     return view('department', ['department' => $department]);

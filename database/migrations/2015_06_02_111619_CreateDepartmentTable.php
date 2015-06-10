@@ -28,10 +28,10 @@ class CreateDepartmentTable extends Migration {
 		Schema::create('department_member', function(Blueprint $table)
 		{
 			$table->integer('department_id')->unsigned()->index();
-			$table->foreign('department_id')->references('id')->on('departments');
+			$table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
 
 			$table->integer('member_id')->unsigned()->index();
-			$table->foreign('member_id')->references('id')->on('members');
+			$table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
 		});
 	}
 

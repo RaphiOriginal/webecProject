@@ -157,6 +157,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="password2" class="col-sm-2 control-label">Passwort wiederholen</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="password2" placeholder="Passwort wiederholen"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="type" class="col-sm-2 control-label">Mitglied</label>
                     <?php
                         $departments = DB::table('departments')->get();
@@ -171,6 +177,30 @@
                     <label for="picture" class="col-sm-2 control-label">Profilbild</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="picture" placeholder="Bild URL">
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="stv-nummer" class="col-sm-2 control-label">STV-Nummer</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="stv-number" placeholder="STV-Nummer">
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="adress" class="col-sm-2 control-label">Adresse</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="adress" placeholder="Adresse">
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="PLZ" class="col-sm-2 control-label">Postleitzahl</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="PLZ" placeholder="Postleitzahl">
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="location" class="col-sm-2 control-label">Ort</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="location" placeholder="Ort">
                         </div>
                 </div>
                 <button class="btn btn-success pull-right" id="createUserSubmit">Speichern</button>
