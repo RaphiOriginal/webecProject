@@ -11,6 +11,7 @@
 
     <title><?php echo $department->name ?></title>
 
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap Core CSS -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
@@ -133,7 +134,7 @@
         <div class="row">
 
             <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
+            <div class="col-md-8">
 
                 <!-- Preview Image -->
                 <?php 
@@ -146,12 +147,11 @@
                 <!-- Post Content -->
                 <?php
                     $text = $department->description;
-                    $splitedText = explode("\n", $text);
+                    $splitedText = explode('\n', $text);
                     echo sprintf("<p class=\"lead\">%s</p>", $splitedText[0]);
                     if(count($splitedText) > 1) echo sprintf("<p>%s</p>", $splitedText[1]);
                 ?>
 
-                        <!-- End Nested Comment -->
                 <table class="table">
                     <tr><th>Mitglieder</th></tr>
                     <?php 
@@ -167,6 +167,26 @@
 
                 <hr>
 
+            </div>
+            <div class="col-md-4">
+                <form class="form-horizontal form-group" role="form">
+                <h3>Informationen</h3>
+                    <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i>
+                        <?php
+                            echo $department->training_day;
+                        ?>
+                    </h4>
+                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i>
+                        <?php
+                            echo substr($department->straining_start,0 ,5);
+                        ?>
+                    </h4>
+                    <h4 class="event-list"><i class="fa fa-fw fa-map-marker"></i>
+                        <?php
+                            echo $department->location;
+                        ?>
+                    </h4>
+                </form>
             </div>
 
         </div>

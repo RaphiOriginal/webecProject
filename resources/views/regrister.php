@@ -128,7 +128,15 @@
             </div>
         </div>
         <!-- /.row -->
-
+        <?php
+            $err = Session::get('error');
+            if(strlen($err) > 0){
+                echo '<script type="text/javascript">';
+                echo 'alert("' . $err . '");';
+                echo '</script>';
+                Session::forget('error');
+            }
+        ?>
         <!-- Content Row -->
         <div class="row">
             <form id="createUser" class="form-horizontal form-group" method="POST" action="/Regrister" role="form">

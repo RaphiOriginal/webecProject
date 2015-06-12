@@ -202,7 +202,11 @@
                             $content = DB::table('departments')->where('id', '3')->first();
                             $text = $content->description;
                             if(strlen($text) > 200){
-                                $text = substr($text, 0, 200);
+                                $counter = 200;
+                                while($text[$counter] != ' '){
+                                    $counter++;
+                                }
+                                $text = substr($text, 0, $counter);
                                 $text = $text . '...';
                             }
                             echo sprintf("<p>%s</p>", $text);

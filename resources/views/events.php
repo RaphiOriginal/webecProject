@@ -165,11 +165,11 @@
                             echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
                         echo '</div>';
                     echo '</div>';
+                    echo '<hr>';
                 }
             ?>
-        <!-- /.row -->
+        
 
-        <hr>
         <!-- Footer -->
         <footer>
             <div class="row">

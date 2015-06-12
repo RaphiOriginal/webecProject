@@ -18,4 +18,7 @@ class Event extends Model {
 	public function departments(){
 		return $this->belongsToMany('App\Department');
 	}
+	public function items(){
+		return $this->hasMany('App\Item');
+	}
 }

@@ -157,6 +157,28 @@
                 ?>
                 <h4 class="event-list"><i class="fa fa-fw fa-map-marker"></i> <?php echo $event->location; ?></h4>
                 <h4 class="event-list"><i class="fa fa-fw fa-credit-card"></i> <?php $string = ""; $string = $string . $event->amount . '.-'; echo $string;?></h4>
+                <h3>Betreffende Abteilungen</h3>
+                <?php
+                $departments = $event->departments()->get();
+                echo '<ul>';
+                foreach($departments as $department){
+                    echo '<li>';
+                    echo $department->name;
+                    echo '</li>';
+                }
+                echo '</ul>';
+                $items = $event->items()->get();
+                    if(count($items) > 0){
+                        echo '<h3>Mitbringsel</h3>';
+                        echo '<ul>';
+                        foreach($items as $item){
+                            echo '<li>';
+                            echo $item->item;
+                            echo '</li>';
+                        }
+                        echo '</ul>';
+                    }
+                ?>
                 <table class="table">
                     <tr><th>Teilnehmer</th><th>Abteilung</th></tr>
                     <?php 
@@ -175,6 +197,7 @@
                                 }
                             echo '<tr><td>' . $member->prename . ' ' . $member->name . '</td><td>' . $string . '</td></tr>';
                         }
+
                     ?>
                 </table>
                 <?php

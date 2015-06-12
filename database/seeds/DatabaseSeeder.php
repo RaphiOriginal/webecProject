@@ -51,7 +51,7 @@ class DepartmentTableSeeder extends Seeder {
 			'location' => 'Sportplatz Welschenrohr',
 			'straining_start' => '19:00:00',
 			'training_day' => 'Dienstag',
-			'picture' => 'http://www.radiosaw.de/sites/default/files/galleriebilder/leichtathletik-team-em-braunschweig/Leichtathletik_Team_38679216.jpg'
+			'picture' => '//www.radiosaw.de/sites/default/files/galleriebilder/leichtathletik-team-em-braunschweig/Leichtathletik_Team_38679216.jpg'
 			]);
 
 		Department::create([
@@ -60,7 +60,7 @@ class DepartmentTableSeeder extends Seeder {
 			'location' => 'MZH Welschenrohr',
 			'straining_start' => '19:00:00',
 			'training_day' => 'Mittwoch',
-			'picture' => 'http://thenational.net/wp-content/uploads/2014/11/Aerobic-Exercise.jpg'
+			'picture' => '//thenational.net/wp-content/uploads/2014/11/Aerobic-Exercise.jpg'
 			]);
 	}
 }
@@ -131,15 +131,23 @@ class EventTableSeeder extends Seeder {
 		DB::table('department_event')->delete();
 
 		DB::table('department_event')->insert(
-			['department_id' => 1, 'event_id' => 1],
+			[['department_id' => 1, 'event_id' => 1],
 			['department_id' => 2, 'event_id' => 1],
-			['department_id' => 3, 'event_id' => 1]
+			['department_id' => 3, 'event_id' => 1]]
 			);
 
 		DB::table('event_member')->delete();
 
 		DB::table('event_member')->insert(
 			['event_id' => 1, 'member_id' => 1]
+			);
+
+		DB::table('items')->delete();
+		DB::table('items')->insert(
+			[['event_id' => 1, 'item' => 'Schlafsack'],
+			['event_id' => 1, 'item' => 'Vereinstrikot'],
+			['event_id' => 1, 'item' => 'Ausweis'],
+			['event_id' => 1, 'item' => 'Sportschuhe']]
 			);
 	}
 }

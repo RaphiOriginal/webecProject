@@ -22,35 +22,10 @@ $app->post('/Login', 'App\Http\Controllers\LoginController@auth');
 $app->get('/Logout', 'App\Http\Controllers\LoginController@logout');
 $app->post('/AddEvent', 'App\Http\Controllers\UserController@eventAdder');
 $app->get('/RemoveEvent/{id}', 'App\Http\Controllers\UserController@eventRemover');
-$app->get('/department/{id}', function($id) use ($app) {
-	$department = Department::find($id);
-    return view('department', ['department' => $department]);
-});
-$app->get('/', function() use ($app) {
-	return view('index');
-});
-$app->get('/Korbball', function() use ($app) {
-	return view('korbball');
-});
-$app->get('/Leichtathletik', function() use ($app) {
-	return view('leichtathletik');
-});
-$app->get('/Aerobic', function() use ($app) {
-	return view('aerobic');
-});
-$app->get('/Events', function() use ($app) {
-	return view('events');
-});
-$app->get('/Profile', function() use ($app) {
-	return view('profile');
-});
-$app->get('/CreateEvent', function() use ($app) {
-	return view('createEvent');
-});
-$app->get('/Event/{id}', function($id) use ($app) {
-	$event = Event::find($id);
-	return view('event', ['event' => $event]);
-});
-$app->get('/Regrister', function() use ($app) {
-	return view('regrister');
-});
+$app->get('/department/{id}', 'App\Http\Controllers\ViewController@department');
+$app->get('/', ['as' => 'index', 'uses' => 'App\Http\Controllers\ViewController@index']);
+$app->get('/Events', 'App\Http\Controllers\ViewController@events');
+$app->get('/Profile', 'App\Http\Controllers\ViewController@profile');
+$app->get('/CreateEvent', 'App\Http\Controllers\ViewController@createEvent');
+$app->get('/Event/{id}', 'App\Http\Controllers\ViewController@event');
+$app->get('/Regrister', 'App\Http\Controllers\ViewController@regrister');

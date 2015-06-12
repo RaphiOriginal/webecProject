@@ -165,11 +165,19 @@
                         <span id="datepickericon" class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
-                        <!-- !!!!!!TODO fix datepicker TODO!!!!!!-->
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="picture" placeholder="Bild URL">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="location" placeholder="Austragungsort">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="amount" placeholder="Totale Kosten">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="items" placeholder="Item Liste (ohne Lehrzeichen!): Item1,Item2,Item 3,...">
                 </div>
                 <button class="btn btn-success pull-right" type="submit">Speichern</button>
                 </div>

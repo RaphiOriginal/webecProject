@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Session;
 use App\Event;
 use App\Department;
 use App\Member;
@@ -35,10 +36,14 @@ class UserController extends BaseController
                     return view('index');
                 } else {
                     //passwort stimmt nicht überein
+                    $errormsg = "Passwörter stimmen nicht überein!";
+                    session(['error' => $errormsg]);
                     return redirect()->back();
                 }
             } else {
                 //passwort und email vergessen
+                $errormsg = "E-Mail oder Passwort vergessen!";
+                session(['error' => $errormsg]);
                 return redirect()->back();
             }
     }
@@ -61,9 +66,7 @@ class UserController extends BaseController
         return redirect()->back();
     }
     public function eventRemover($id){
-        echo '<script type="text/javascript">';
-        echo 'alert("Trying to delete Event");';
-        echo '</script>';
+        
         $user = session('loggedInUser');
         $user->events()->detach($id);
         return redirect()->back();
