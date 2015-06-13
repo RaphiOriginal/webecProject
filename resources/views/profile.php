@@ -118,11 +118,15 @@
     <!-- Page Content -->
     <div class="container">
 
+        <!-- Placeholder for Accountdeleting -->
+        <div id="deleteModal">
+        </div>
+
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Profil
-                    <a class="btn btn-danger pull-right" href="/DeleteRequest">Account Löschen</a>
+                    <button class="btn btn-danger pull-right" onclick="deleteRequest()">Account Löschen</button>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/">TV Welschenrohr</a>
@@ -244,6 +248,9 @@
 
     </div>
     <!-- /.container -->
+
+    <!-- own script -->
+    <script src="js/script.js"></script>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
