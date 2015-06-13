@@ -22,4 +22,14 @@ class Member extends Model {
 	public function departments(){
 		return $this->belongsToMany('App\Department');
 	}
+	public function hasEvent($id){
+		$events = $this->events()->get();
+		$check = false;
+		foreach($events as $event){
+			if(!$check && $event->id == $id){
+				$check = true;
+			}
+		}
+		return $check;
+	}
 }

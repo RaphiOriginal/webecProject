@@ -148,6 +148,7 @@
         <?php
         use App\Event;
 
+                $user = Session::get('loggedInUser');
                 $events = Event::all();
                 foreach($events as $event){
                     echo '<div class="row">';
@@ -163,6 +164,11 @@
                             echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ' . $datetime[1] . '</h4>';
                             echo '<p>' . $event->description . '</p>';
                             echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
+                            if($user != null && $user->hasEvent($event->id)){
+                                echo '<a class="btn btn-danger pull-right" href="/RemoveEvent/' . $event->id . '">Entfernen</a>';
+                            } else {
+                                echo '<a class="btn btn-success pull-right" href="/AddEvent/' . $event->id . '">Teilnehmen</a>';
+                            }
                         echo '</div>';
                     echo '</div>';
                     echo '<hr>';

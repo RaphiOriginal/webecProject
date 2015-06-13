@@ -38,7 +38,7 @@ class DepartmentTableSeeder extends Seeder {
 
 		Department::create([
 			'name' => 'Korbball',
-			'description' => 'Unser Korbballteam spielt in den Regionalen Meisterschaften in der 1. Liga und spielt immer erfolgreich in den vorderen Rängen mit.\n Mit viel Spass und hartem Training gehen wir jährlich die Sommer und Wintermeisterschaft an. Zusammen machen wir etwas gesundes für unseren Körper aber pflegen auch die Kameradschaft, die sehr wichtig ist im Teamsport.',
+			'description' => 'Unser Korbballteam spielt in den Regionalen Meisterschaften in der 1. Liga und spielt immer erfolgreich in den vorderen Rängen mit.<br> Mit viel Spass und hartem Training gehen wir jährlich die Sommer und Wintermeisterschaft an. Zusammen machen wir etwas gesundes für unseren Körper aber pflegen auch die Kameradschaft, die sehr wichtig ist im Teamsport.',
 			'location' => 'Alte Turnhalle Welschenrohr',
 			'straining_start' => '20:00:00',
 			'training_day' => 'Mittwoch',
@@ -47,7 +47,7 @@ class DepartmentTableSeeder extends Seeder {
 
 		Department::create([
 			'name' => 'Leichtathletik',
-			'description' => 'Unser Leichtathletikteam ist weit bekannt für unsere erfolgreichen Läufer.\n Wir nehmen jährlich an diversen Wettkäpfen und Läufen teil. Zusammen machen wir etwas gesundes für unseren Körper aber pflegen auch die Kameradschaft, die sehr wichtig ist im Teamsport.',
+			'description' => 'Unser Leichtathletikteam ist weit bekannt für unsere erfolgreichen Läufer.<br> Wir nehmen jährlich an diversen Wettkäpfen und Läufen teil. Zusammen machen wir etwas gesundes für unseren Körper aber pflegen auch die Kameradschaft, die sehr wichtig ist im Teamsport.',
 			'location' => 'Sportplatz Welschenrohr',
 			'straining_start' => '19:00:00',
 			'training_day' => 'Dienstag',
@@ -56,7 +56,7 @@ class DepartmentTableSeeder extends Seeder {
 
 		Department::create([
 			'name' => 'Aerobic',
-			'description' => 'Angeführt von Marcel Eberhart hat unser Areobic-Team schon mehrmals den Meistertitel gewonnen.\n Wir nehmen jährlich an diversen Wettkäpfen und Auftritten teil. Zusammen machen wir etwas gesundes für unseren Körper aber pflegen auch die Kameradschaft, die sehr wichtig ist im Teamsport.',
+			'description' => 'Angeführt von Marcel Eberhart hat unser Areobic-Team schon mehrmals den Meistertitel gewonnen.<br> Wir nehmen jährlich an diversen Wettkäpfen und Auftritten teil. Zusammen machen wir etwas gesundes für unseren Körper aber pflegen auch die Kameradschaft, die sehr wichtig ist im Teamsport.',
 			'location' => 'MZH Welschenrohr',
 			'straining_start' => '19:00:00',
 			'training_day' => 'Mittwoch',

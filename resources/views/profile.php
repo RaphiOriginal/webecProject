@@ -122,6 +122,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Profil
+                    <a class="btn btn-danger pull-right" href="/DeleteRequest">Account Löschen</a>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/">TV Welschenrohr</a>
@@ -141,41 +142,39 @@
                 ?>
             </div>
             <div class="col-md-5">
-            <form class="form-horizontal form-group" role="form">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Vorname</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php 
+                <form class="form-horizontal form-group" role="form">
+                    <div class="row">
+                        <label class="col-xs-4">Adressdaten</label>
+                        <div class="col-xs-8">
+                            <p><?php 
                             $user = Session::get('loggedInUser');
-                            $prename = $user->prename;
-                            echo $prename;
+                            $adress = $user->prename;
+                            $adress = $adress . ' ' . $user->name;
+                            $adress = $adress . '<br>' . $user->adress;
+                            $adress = $adress . '<br>' . $user->PLZ;
+                            $adress = $adress . ' ' . $user->location;
+                            echo $adress;
                             ?></p>
                         </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Nachname</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php 
+                        <label class="col-xs-4">STV-Nummer</label>
+                        <div class="col-xs-8">
+                            <p><?php 
                             $user = Session::get('loggedInUser');
-                            $name = $user->name;
+                            $name = $user->stv_number;
                             echo $name;
                             ?></p>
                         </div>
-                </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Email</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php 
+                        <label class="col-xs-4">Email</label>
+                        <div class="col-xs-8">
+                            <p><?php 
                             $user = Session::get('loggedInUser');
                             $email = $user->email;
                             echo $email;
                             ?></p>
                         </div>
-                    </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Mitglied</label>
-                        <div class="col-sm-2">
-                            <p class="form-control-static"><?php
+                        <label class="col-xs-4">Mitglied</label>
+                        <div class="col-xs-8">
+                            <p><?php
                                 $user = Session::get('loggedInUser');
                                 $departments = $user->departments()->get();
                                 $string = "";
@@ -191,7 +190,8 @@
                                 echo $string;
                             ?></p>
                         </div>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- /.row -->
@@ -202,7 +202,7 @@
             <div class="col-lg-12">
                 <h2 class="page-header">Deine Events</h2>
             </div>
-            <!-- Project One -->
+            <!-- Eventlist -->
             <?php
                 $user = Session::get('loggedInUser');
                 $events = $user->events()->get();

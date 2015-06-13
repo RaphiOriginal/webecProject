@@ -17,6 +17,7 @@ class LoginController extends BaseController
 				session(['loggedInUser' => $member]);
                 return redirect()->route('index');
 			} else {
+                //TODO fehlermeldung!!
                 echo '<script type="text/javascript">';
                 echo 'alert("Wrong Username or Password");';
                 echo '</script>';

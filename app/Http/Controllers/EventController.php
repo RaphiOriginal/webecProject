@@ -28,7 +28,4 @@ class EventController extends BaseController
             }
             return redirect()->back();
     }
-    public function index(){
-    	return Event::all();
-    }
 }

@@ -202,11 +202,10 @@
                 </table>
                 <?php
                     $user = Session::get('loggedInUser');
-                    if($user != null){
-                        echo '<form id="addEvent" class="form-horizontal form-group" method="POST" action="/AddEvent" role="form">';
-                        echo '<input type="hidden" name="id" value="' . $event->id . '">';
-                        echo '<button class="btn btn-success pull-right" type="submit">Teilnehmen</a>';
-                        echo '</form>';
+                    if($user != null && $user->hasEvent($event->id)){
+                        echo '<a class="btn btn-danger pull-right" href="/RemoveEvent/' . $event->id . '">Entfernen</a>';
+                    } else {
+                        echo '<a class="btn btn-success pull-right" href="/AddEvent/' . $event->id . '">Teilnehmen</a>';
                     }
                 ?>
             </div>

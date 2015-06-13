@@ -147,49 +147,78 @@
                 <!-- Post Content -->
                 <?php
                     $text = $department->description;
-                    $splitedText = explode('\n', $text);
+                    $splitedText = explode('<br>', $text);
                     echo sprintf("<p class=\"lead\">%s</p>", $splitedText[0]);
                     if(count($splitedText) > 1) echo sprintf("<p>%s</p>", $splitedText[1]);
                 ?>
 
-                <table class="table">
-                    <tr><th>Mitglieder</th></tr>
-                    <?php 
-                        $members = $department->members()->get();
-                        foreach($members as $member){
-                            $prename = $member->prename;
-                            $name = $member->name;
-                            $mail = $member->email;
-                            echo sprintf("<tr><td>%s %s %s</td><tr>", $prename, $name, $mail);
-                        }
-                    ?>
-                </table>
-
-                <hr>
-
             </div>
             <div class="col-md-4">
                 <form class="form-horizontal form-group" role="form">
-                <h3>Informationen</h3>
-                    <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i>
-                        <?php
-                            echo $department->training_day;
+                    <h3>Informationen</h3>
+                        <h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i>
+                            <?php
+                                echo $department->training_day;
+                            ?>
+                        </h4>
+                        <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i>
+                            <?php
+                                echo substr($department->straining_start,0 ,5);
+                            ?>
+                        </h4>
+                        <h4 class="event-list"><i class="fa fa-fw fa-map-marker"></i>
+                            <?php
+                                echo $department->location;
+                            ?>
+                        </h4>
+                         <table class="table">
+                        <tr><th>Mitglieder</th></tr>
+                        <?php 
+                            $members = $department->members()->get();
+                            foreach($members as $member){
+                                $prename = $member->prename;
+                                $name = $member->name;
+                                $mail = $member->email;
+                                echo sprintf("<tr><td>%s %s %s</td><tr>", $prename, $name, $mail);
+                            }
                         ?>
-                    </h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i>
-                        <?php
-                            echo substr($department->straining_start,0 ,5);
-                        ?>
-                    </h4>
-                    <h4 class="event-list"><i class="fa fa-fw fa-map-marker"></i>
-                        <?php
-                            echo $department->location;
-                        ?>
-                    </h4>
+                    </table>
                 </form>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Unsere Events</h2>
+            </div>
+
+
+            <?php
+            $events = $department->events()->get();
+            foreach($events as $event){
+                echo '<div class="row">';
+                    echo '<div class="col-md-7">';
+                        echo '<a href="/Event">';
+                            echo '<img class="img-responsive img-hover" src="' . $event->picture . ' " alt="">';
+                        echo '</a>';
+                    echo '</div>';
+                    echo '<div class="col-md-5">';
+                        echo '<h3>' . $event->name . '</h3>';
+                        $datetime = explode(' ', $event->startdate);
+                        echo '<h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> ' . $datetime[0] . '</h4>';
+                        echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ' . $datetime[1] . '</h4>';
+                        echo '<p>' . $event->description . '</p>';
+                        echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
+
+                        echo '<a class="btn btn-danger pull-right" href="/RemoveEvent/' . $event->id . '">Entfernen</a>';
+
+                    echo '</div>';
+                echo '</div>';
+            }
+            ?>
 
         </div>
+
+        <hr>
 
         <!-- Footer -->
         <footer>

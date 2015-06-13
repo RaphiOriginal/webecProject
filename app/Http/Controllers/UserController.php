@@ -47,12 +47,8 @@ class UserController extends BaseController
                 return redirect()->back();
             }
     }
-    public function index(){
-    	return Member::all();
-    }
-    public function eventAdder(Request $request){
+    public function eventAdder($id){
         $user = session('loggedInUser');
-        $id = $request->input('id');
         $userEvents = $user->events()->get();
         $check = false;
         foreach($userEvents as $eventcheck){
@@ -70,5 +66,36 @@ class UserController extends BaseController
         $user = session('loggedInUser');
         $user->events()->detach($id);
         return redirect()->back();
+    }
+    public function delete(){
+        $user = session('loggedInUser');
+        $user->delete();
+        return redirect()->route('index');
+    }
+    public function request(){
+        echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">';
+        echo '<div class="modal-dialog">';
+            echo '<div class="modal-content">';
+                echo '<div class="modal-header">';
+                    echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+                    echo '<h4 class="modal-title" id="myModalLabel">Login</h4>';
+                echo '</div>';
+                echo '<div class="modal-body">';
+                    echo '<form class="form" method="POST" action="/Login" role="search">';
+                        echo '<div class="form-group">';
+                            echo '<input type="text" class="form-control" name="email" placeholder="E-Mail">';
+                        echo '</div>';
+                        echo '<div class="form-group">';
+                            echo '<input type="password" class="form-control" name="password" placeholder="Passwort">';
+                        echo '</div>';
+                            echo '<button type="submit" class="btn btn-success">Login</button>';
+                            echo '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>';
+                            echo '<a href="/Regrister" class="navbar-text navbar-link pull-right">Regristrieren</a>';
+                    echo '</form>';
+                echo '</div>';
+            echo '</div>';
+        echo '</div>';
+    echo '</div>';
+        //return redirect()->route('profile');
     }
 }
