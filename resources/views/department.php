@@ -120,6 +120,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header"><?php echo $department->name ?>
+                    <?php
+                    if($user != null && $user->hasDepartment($department->id)){
+                        echo '<a class="btn btn-danger pull-right" href="/RemoveDepartment/' . $department->id . '">Entfernen</a>';
+                    } else {
+                        echo '<a class="btn btn-success pull-right" href="/AddDepartment/' . $department->id . '">Mitglied werden</a>';
+                    }
+                    ?>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/">TV Welschenrohr</a>

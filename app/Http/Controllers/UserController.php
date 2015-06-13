@@ -73,4 +73,14 @@ class UserController extends BaseController
         $user->delete();
         return redirect()->route('index');
     }
+    public function departmentRemover($id){
+        $user = session('loggedInUser');
+        $user->departments()->detach($id);
+        return redirect()->back();
+    }
+    public function departmentAdder($id){
+        $user = session('loggedInUser');
+        $user->departments()->attach($id);
+        return redirect()->back();
+    }
 }

@@ -30,4 +30,5 @@ $app->get('/CreateEvent', 'App\Http\Controllers\ViewController@createEvent');
 $app->get('/Event/{id}', 'App\Http\Controllers\ViewController@event');
 $app->get('/Regrister', 'App\Http\Controllers\ViewController@regrister');
 $app->get('/DeleteMe', 'App\Http\Controllers\UserController@delete');
-$app->get('/DeleteRequest', 'App\Http\Controllers\UserController@request');
+$app->get('/RemoveDepartment/{id}', 'App\Http\Controllers\UserController@departmentRemover');
+$app->get('/AddDepartment/{id}', 'App\Http\Controllers\UserController@departmentAdder');

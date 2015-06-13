@@ -32,4 +32,14 @@ class Member extends Model {
 		}
 		return $check;
 	}
+	public function hasDepartment($id){
+		$departments = $this->departments()->get();
+		$check = false;
+		foreach($departments as $department){
+			if(!$check && $department->id == $id){
+				$check = true;
+			}
+		}
+		return $check;
+	}
 }

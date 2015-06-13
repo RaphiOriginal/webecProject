@@ -151,21 +151,25 @@
                         <label class="col-xs-4">Adressdaten</label>
                         <div class="col-xs-8">
                             <p><?php 
-                            $user = Session::get('loggedInUser');
-                            $adress = $user->prename;
-                            $adress = $adress . ' ' . $user->name;
-                            $adress = $adress . '<br>' . $user->adress;
-                            $adress = $adress . '<br>' . $user->PLZ;
-                            $adress = $adress . ' ' . $user->location;
-                            echo $adress;
+                            if(strlen($user->prename) > 0){
+                                $user = Session::get('loggedInUser');
+                                $adress = $user->prename;
+                                $adress = $adress . ' ' . $user->name;
+                                $adress = $adress . '<br>' . $user->adress;
+                                $adress = $adress . '<br>' . $user->PLZ;
+                                $adress = $adress . ' ' . $user->location;
+                                echo $adress;
+                            }
                             ?></p>
                         </div>
                         <label class="col-xs-4">STV-Nummer</label>
                         <div class="col-xs-8">
                             <p><?php 
                             $user = Session::get('loggedInUser');
-                            $name = $user->stv_number;
-                            echo $name;
+                            if(strlen($user->stv_number) > 0){
+                                $name = $user->stv_number;
+                                echo $name;
+                            }
                             ?></p>
                         </div>
                         <label class="col-xs-4">Email</label>
