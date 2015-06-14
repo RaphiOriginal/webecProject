@@ -114,7 +114,15 @@
             </div>
         </div>
     </div>
-
+    <?php
+            $err = Session::get('error');
+            if(strlen($err) > 0){
+                echo '<script type="text/javascript">';
+                echo 'alert("' . $err . '");';
+                echo '</script>';
+                Session::forget('error');
+            }
+        ?>
     <!-- Page Content -->
     <div class="container">
 
@@ -151,27 +159,32 @@
                 $user = Session::get('loggedInUser');
                 $events = Event::all();
                 foreach($events as $event){
-                    echo '<div class="row">';
-                        echo '<div class="col-md-7">';
-                            echo '<a href="/Event">';
-                                echo '<img class="img-responsive img-hover" src="' . $event->picture . ' " alt="">';
-                            echo '</a>';
+                    $datetime = $event->datetime . ':00.0';
+                    if(strtotime($datetime) < time()){
+                        echo '<div class="row">';
+                            echo '<div class="col-md-7">';
+                                echo '<a href="/Event">';
+                                    echo '<img class="img-responsive img-hover" src="' . $event->picture . ' " alt="">';
+                                echo '</a>';
+                            echo '</div>';
+                            echo '<div class="col-md-5">';
+                                echo '<h3>' . $event->name . '</h3>';
+                                $datetime = explode(' ', $event->startdate);
+                                echo '<h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> ' . $datetime[0] . '</h4>';
+                                echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ' . $datetime[1] . '</h4>';
+                                echo '<p>' . $event->description . '</p>';
+                                echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
+                                if($user != null && $user->hasEvent($event->id)){
+                                    echo '<a class="btn btn-danger pull-right" href="/RemoveEvent/' . $event->id . '">Entfernen</a>';
+                                } else {
+                                    echo '<a class="btn btn-success pull-right" href="/AddEvent/' . $event->id . '">Teilnehmen</a>';
+                                }
+                            echo '</div>';
                         echo '</div>';
-                        echo '<div class="col-md-5">';
-                            echo '<h3>' . $event->name . '</h3>';
-                            $datetime = explode(' ', $event->startdate);
-                            echo '<h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> ' . $datetime[0] . '</h4>';
-                            echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ' . $datetime[1] . '</h4>';
-                            echo '<p>' . $event->description . '</p>';
-                            echo '<a class="btn btn-primary" href="/Event/' . $event->id . '">Zeige Event</i></a>';
-                            if($user != null && $user->hasEvent($event->id)){
-                                echo '<a class="btn btn-danger pull-right" href="/RemoveEvent/' . $event->id . '">Entfernen</a>';
-                            } else {
-                                echo '<a class="btn btn-success pull-right" href="/AddEvent/' . $event->id . '">Teilnehmen</a>';
-                            }
-                        echo '</div>';
-                    echo '</div>';
-                    echo '<hr>';
+                        echo '<hr>';
+                    } else {
+                        $event->delete();
+                    }
                 }
             ?>
         

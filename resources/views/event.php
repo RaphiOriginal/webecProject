@@ -23,6 +23,10 @@
     <!-- Custom Fonts -->
     <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="../js/jquery.datetimepicker.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -114,7 +118,15 @@
             </div>
         </div>
     </div>
-
+    <?php
+            $err = Session::get('error');
+            if(strlen($err) > 0){
+                echo '<script type="text/javascript">';
+                echo 'alert("' . $err . '");';
+                echo '</script>';
+                Session::forget('error');
+            }
+        ?>
     <!-- Page Content -->
     <div class="container">
 
@@ -122,6 +134,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Event
+                    <?php
+                    use App\Member;
+                    
+                    $user = Session::get('loggedInUser');
+                    if($user != null ) {
+                        $member = Member::find($user->id);
+                        if($member->is_admin == 1){
+                         echo '<a class="btn btn-danger pull-right" href="/DeleteEvent/' . $event->id . '">Löschen</i></a>';
+                        }
+                    }
+                ?>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="/">TV Welschenrohr</a>
@@ -136,27 +159,78 @@
 
         <!-- Portfolio Item Row -->
         <div class="row">
-
+            <script type="text/JavaScript">
+            $(document).ready(function() {
+                $("#datetimepicker").datetimepicker({format:'Y-m-d H:i',});
+            });
+            </script>
             <div class="col-md-8">
                 <?php
                 echo '<img class="img-responsive" src="' . $event->picture . '" alt="">';
                 ?>
             </div>
             <div class="col-md-4">
-                <h3><?php echo $event->name; ?></h3>
-                <p><?php echo $event->description; ?></p>
+                <h3 id="eventTitle"><?php
+                echo $event->name;
+                $user = Session::get('loggedInUser');
+                if($user != null ) {
+                    $member = Member::find($user->id);
+                    if($member->is_admin == 1){
+                     echo '<button type="button" class="close" onclick="changeTitle()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
+                   }
+                }
+                ?></h3>
+                <p id="description"><?php
+                echo $event->description;
+                $user = Session::get('loggedInUser');
+                if($user != null ) {
+                    $member = Member::find($user->id);
+                    if($member->is_admin == 1){
+                     echo '<button type="button" class="close" onclick="changeDescription()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
+                   }
+                } 
+                ?></p>
                 <h3>Event Details</h3>
                 <?php 
                 $datetime = explode(' ', $event->startdate);
+                echo '<div id="date">';
                 echo '<h4 class="event-list"><i class="fa fa-fw fa-calendar-o"></i> ';
                 echo $datetime[0];
                 echo '</h4>';
                 echo '<h4 class="event-list"><i class="fa fa-fw fa-clock-o"></i> ';
                 echo $datetime[1];
+                $user = Session::get('loggedInUser');
+                if($user != null ) {
+                    $member = Member::find($user->id);
+                    if($member->is_admin == 1){
+                     echo '<button type="button" class="close" onclick="changeDateTime()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
+                   }
+                }
                 echo '</h4>';
+                echo '</div>';
                 ?>
-                <h4 class="event-list"><i class="fa fa-fw fa-map-marker"></i> <?php echo $event->location; ?></h4>
-                <h4 class="event-list"><i class="fa fa-fw fa-credit-card"></i> <?php $string = ""; $string = $string . $event->amount . '.-'; echo $string;?></h4>
+                <h4 class="event-list" id="location"><i class="fa fa-fw fa-map-marker"></i> <?php 
+                echo $event->location;
+                $user = Session::get('loggedInUser');
+                if($user != null ) {
+                    $member = Member::find($user->id);
+                    if($member->is_admin == 1){
+                     echo '<button type="button" class="close" onclick="changeLocation()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
+                   }
+                }
+                ?></h4>
+                <h4 class="event-list" id="amount"><i class="fa fa-fw fa-credit-card"></i> <?php 
+                $string = "";
+                $string = $string . $event->amount . '.-';
+                echo $string;
+                $user = Session::get('loggedInUser');
+                if($user != null ) {
+                    $member = Member::find($user->id);
+                    if($member->is_admin == 1){
+                     echo '<button type="button" class="close" onclick="changeAmount()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
+                   }
+                }
+                ?></h4>
                 <h3>Betreffende Abteilungen</h3>
                 <?php
                 $departments = $event->departments()->get();
@@ -169,7 +243,16 @@
                 echo '</ul>';
                 $items = $event->items()->get();
                     if(count($items) > 0){
-                        echo '<h3>Mitbringsel</h3>';
+                        echo '<div id="items">';
+                        echo '<h3>Mitbringsel';
+                        $user = Session::get('loggedInUser');
+                        if($user != null ) {
+                            $member = Member::find($user->id);
+                            if($member->is_admin == 1){
+                             echo '<button type="button" class="close" onclick="changeItems()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
+                           }
+                        }
+                        echo '</h3>';
                         echo '<ul>';
                         foreach($items as $item){
                             echo '<li>';
@@ -177,6 +260,7 @@
                             echo '</li>';
                         }
                         echo '</ul>';
+                        echo '</div';
                     }
                 ?>
                 <table class="table">
@@ -227,8 +311,7 @@
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
+    <script src="../js/script.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>

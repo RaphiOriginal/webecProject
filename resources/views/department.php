@@ -76,7 +76,7 @@
                                     echo '<form class="navbar-form navbar-left" role="search">';
                                     echo '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">SignIn</button>';
                                 } else {
-                                    echo '<form class="navbar-form navbar-left" method="GET" action="/Logout" role="form">';
+                                    echo '<form class="navbar-form navbar-left" role="form">';
                                     echo '<a type="button" class="btn btn-danger" href="/Logout">LogOut</a>';
                                 }
                                 echo '</form>';
@@ -112,7 +112,15 @@
             </div>
         </div>
     </div>
-
+    <?php
+            $err = Session::get('error');
+            if(strlen($err) > 0){
+                echo '<script type="text/javascript">';
+                echo 'alert("' . $err . '");';
+                echo '</script>';
+                Session::forget('error');
+            }
+        ?>
     <!-- Page Content -->
     <div class="container">
 
@@ -122,7 +130,7 @@
                 <h1 class="page-header"><?php echo $department->name ?>
                     <?php
                     if($user != null && $user->hasDepartment($department->id)){
-                        echo '<a class="btn btn-danger pull-right" href="/RemoveDepartment/' . $department->id . '">Entfernen</a>';
+                        echo '<a class="btn btn-danger pull-right" href="/RemoveDepartment/' . $department->id . '">Verlassen</a>';
                     } else {
                         echo '<a class="btn btn-success pull-right" href="/AddDepartment/' . $department->id . '">Mitglied werden</a>';
                     }

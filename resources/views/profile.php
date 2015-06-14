@@ -115,6 +115,15 @@
         </div>
     </div>
 
+    <?php
+            $err = Session::get('error');
+            if(strlen($err) > 0){
+                echo '<script type="text/javascript">';
+                echo 'alert("' . $err . '");';
+                echo '</script>';
+                Session::forget('error');
+            }
+        ?>
     <!-- Page Content -->
     <div class="container">
 
@@ -142,15 +151,15 @@
             <div class="col-md-7">
                 <?php
                     $user = Session::get('loggedInUser');
-                    echo '<img class="img-responsive" src="' . $user->picture . '" alt="">'
+                    echo '<img class="img-responsive" src="' . $user->picture . '" alt="">';
                 ?>
             </div>
             <div class="col-md-5">
                 <form class="form-horizontal form-group" role="form">
                     <div class="row">
                         <label class="col-xs-4">Adressdaten</label>
-                        <div class="col-xs-8">
-                            <p><?php 
+                        <div class="col-xs-8" id="adress">
+                            <p id="completeAdress"><?php 
                             if(strlen($user->prename) > 0){
                                 $user = Session::get('loggedInUser');
                                 $adress = $user->prename;
@@ -160,24 +169,27 @@
                                 $adress = $adress . ' ' . $user->location;
                                 echo $adress;
                             }
+                            echo '<button type="button" class="close" onclick="changeAdress()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
                             ?></p>
                         </div>
                         <label class="col-xs-4">STV-Nummer</label>
-                        <div class="col-xs-8">
-                            <p><?php 
+                        <div class="col-xs-8" id="stv">
+                            <p id="stv_number"><?php 
                             $user = Session::get('loggedInUser');
                             if(strlen($user->stv_number) > 0){
-                                $name = $user->stv_number;
-                                echo $name;
+                                $stv_number = $user->stv_number;
+                                echo $stv_number;
                             }
+                            echo '<button type="button" class="close" onclick="changeSTV()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
                             ?></p>
                         </div>
-                        <label class="col-xs-4">Email</label>
-                        <div class="col-xs-8">
-                            <p><?php 
+                        <label class="col-xs-4">E-Mail</label>
+                        <div class="col-xs-8" id="email">
+                            <p id="emailadress"><?php 
                             $user = Session::get('loggedInUser');
                             $email = $user->email;
                             echo $email;
+                            echo '<button type="button" class="close" onclick="changeEmail()" aria-label="Close"><i class="fa fa-pencil event-list"></i></button>';
                             ?></p>
                         </div>
                         <label class="col-xs-4">Mitglied</label>

@@ -83,4 +83,32 @@ class UserController extends BaseController
         $user->departments()->attach($id);
         return redirect()->back();
     }
+    public function changeEmail(Request $request){
+        $user = Session::get('loggedInUser');
+        $user = Member::find($user->id);
+        $user->email = $request->input('email');
+        $user->save();
+        session(['loggedInUser' => $user]);
+        return redirect()->back();
+    }
+    public function changeStv(Request $request){
+        $user = Session::get('loggedInUser');
+        $user = Member::find($user->id);
+        $user->stv_number = $request->input('stv_number');
+        $user->save();
+        session(['loggedInUser' => $user]);
+        return redirect()->back();
+    }
+    public function changeAdress(Request $request){
+        $user = Session::get('loggedInUser');
+        $user = Member::find($user->id);
+        $user->prename = $request->input('prename');
+        $user->name = $request->input('name');
+        $user->adress = $request->input('adress');
+        $user->PLZ = $request->input('PLZ');
+        $user->location = $request->input('location');
+        $user->save();
+        session(['loggedInUser' => $user]);
+        return redirect()->back();
+    }
 }

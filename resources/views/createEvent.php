@@ -115,7 +115,15 @@
             </div>
         </div>
     </div>
-
+    <?php
+            $err = Session::get('error');
+            if(strlen($err) > 0){
+                echo '<script type="text/javascript">';
+                echo 'alert("' . $err . '");';
+                echo '</script>';
+                Session::forget('error');
+            }
+        ?>
     <!-- Page Content -->
     <div class="container">
 
@@ -134,7 +142,7 @@
             </div>
         </div>
         <!-- /.row -->
-
+        
         <!-- Content Row -->
         <script type="text/JavaScript">
             $(document).ready(function() {

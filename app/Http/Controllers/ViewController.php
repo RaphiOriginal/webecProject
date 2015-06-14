@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Session;
 use App\Event;
 use App\Department;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class ViewController extends BaseController
     }
     public function event($id){
     	$event = Event::find($id);
+        session(['EditEvent' => $event]);
     	return view('event', ['event' => $event]);
     }
 }
